@@ -99,7 +99,6 @@ services:
       
   generator:
     build: ./message_generator
-    container_name: generator
     depends_on:
       kafka-init:
         condition: service_completed_successfully

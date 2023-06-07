@@ -1,11 +1,9 @@
-from time import sleep
 from confluent_kafka import Producer
 import socket
 
 
 def main():
     try:
-        sleep(20)
         conf = {
             'bootstrap.servers': "kafka-1:9092",
             'client.id': socket.gethostname()
@@ -19,7 +17,6 @@ def main():
         for idx, i in enumerate(st.split('\n')):
             if idx < 10:
                 print(i)
-                sleep(1)
                 producer.produce('first_topic', value=i)
             else:
                 break
