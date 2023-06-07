@@ -82,18 +82,25 @@ services:
     image: confluentinc/cp-kafka:latest
     container_name: kafka-init
     depends_on:
-      - kafka-1
-      - kafka-2
-      - kafka-3
+      kafka-1:
+        condition: service_started
+      kafka-2:
+        condition: service_started
+      kafka-3:
+        condition: service_started
     entrypoint: ['/bin/sh', '-c']
     command: |
       "
-      kafka-topics --bootstrap-server kafka-1:9092 --create --topic first-topic --partitions 1
+      echo "Waiting for Kafka to be ready..."
+      until kafka-topics --bootstrap-server kafka-1:9092 --list; do sleep 5; done;
+      echo "Kafka is ready now, start creating topics."
+      kafka-topics --bootstrap-server kafka-1:9092 --create --topic first_topic --partitions 1
       "
       
   generator:
     build: ./message_generator
     container_name: generator
     depends_on:
-      - kafka-init
-    command: ["python", "generator.py"]
+      kafka-init:
+        condition: service_completed_successfully
+    command: ["python", "./src/generator.py"]

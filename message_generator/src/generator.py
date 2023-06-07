@@ -5,6 +5,7 @@ import socket
 
 def main():
     try:
+        sleep(20)
         conf = {
             'bootstrap.servers': "kafka-1:9092",
             'client.id': socket.gethostname()
@@ -12,14 +13,14 @@ def main():
 
         producer = Producer(conf)
 
-        with open('./tweets.csv') as f:
+        with open('./src/tweets.csv') as f:
             st = f.read()
 
         for idx, i in enumerate(st.split('\n')):
             if idx < 10:
                 print(i)
                 sleep(1)
-                producer.produce('first-topic', value=i)
+                producer.produce('first_topic', value=i)
             else:
                 break
     except Exception as e:
