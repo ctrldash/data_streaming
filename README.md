@@ -3,3 +3,4 @@
 Collaborators:
  - Vadym
  - Oleksii
+ - Daria
