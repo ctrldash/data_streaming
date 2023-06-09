@@ -12,12 +12,15 @@ def main():
         producer = Producer(conf)
 
         with open('./src/tweets.csv') as f:
-            header = f.readline()  # pass first line
+            st = f.read()
 
-            for i in range(10):
-                msg = f.readline()
-                producer.produce('first_topic', value=msg)
-
+        for idx, i in enumerate(st.split('\n')):
+            if idx < 10:
+                print(i)
+                producer.produce('first_topic', value=i)
+                producer.flush()
+            else:
+                break
     except Exception as e:
         print(e)
 

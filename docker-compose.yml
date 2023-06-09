@@ -79,23 +79,17 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 
   kafka-init:
-    image: confluentinc/cp-kafka:latest
-    container_name: kafka-init
-    depends_on:
-      kafka-1:
-        condition: service_started
-      kafka-2:
-        condition: service_started
-      kafka-3:
-        condition: service_started
-    entrypoint: ['/bin/sh', '-c']
-    command: |
-      "
-      echo "Waiting for Kafka to be ready..."
-      until kafka-topics --bootstrap-server kafka-1:9092 --list; do sleep 5; done;
-      echo "Kafka is ready now, start creating topics."
-      kafka-topics --bootstrap-server kafka-1:9092 --create --topic first_topic --partitions 1
-      "
+      image: confluentinc/cp-kafka:latest
+      container_name: kafka-init
+      depends_on:
+        - kafka-1
+        - kafka-2
+        - kafka-3
+      entrypoint: ['/bin/sh', '-c']
+      command: |
+        "
+        sleep 10 && kafka-topics --bootstrap-server kafka-1:9092 --create --topic first_topic --partitions 1
+        "
       
   generator:
     build: ./message_generator
