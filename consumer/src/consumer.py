@@ -1,11 +1,19 @@
 import sys
+import logging
 from confluent_kafka import Consumer, KafkaException, KafkaError
 
 
+logger = logging.getLogger('consumer')
+logger.setLevel(logging.DEBUG)
+handler = logging.StreamHandler()
+handler.setFormatter(logging.Formatter('%(asctime)-15s %(levelname)-8s %(message)s'))
+logger.addHandler(handler)
+
+
 def msg_process(msg):
-    print("I`m here, inside msg_process function")
-    print(msg.value())
-    print(msg.topic())
+    logger.info("I`m here, inside msg_process function")
+    logger.info(msg.value())
+    logger.info(msg.topic())
 
 
 def basic_consume_loop(consumer, topics):
