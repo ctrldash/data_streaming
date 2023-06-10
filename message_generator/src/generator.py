@@ -1,8 +1,17 @@
+import sys
 from confluent_kafka import Producer
 import socket
+import pandas as pd
+import concurrent.futures
 
 
-def main():
+def send(producer, message):
+    # print(message)
+    producer.produce('first_topic', value=message)
+    producer.flush()
+
+
+def main(file_name):
     try:
         conf = {
             'bootstrap.servers': "kafka-1:9092",
@@ -11,22 +20,25 @@ def main():
 
         producer = Producer(conf)
 
-        with open('./src/tweets.csv') as f:
-            st = f.read()
+        df = pd.read_csv(f'./src/{file_name}')
 
-        for idx, i in enumerate(st.split('\n')):
-            if idx < 10:
-                print(i)
-                producer.produce('first_topic', value=i)
-                producer.flush()
-            else:
-                break
+        messages = list(df['text'])
+
+        with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
+
+            futures = []
+            for msg in messages:
+                futures.append(executor.submit(send, producer=producer, message=msg))
+            for future in concurrent.futures.as_completed(futures):
+                future.result()
+
     except Exception as e:
         print(e)
 
 
 if __name__ == '__main__':
-    main()
+    args = sys.argv
+    main(args[1])
 
 
 
