@@ -9,7 +9,7 @@ Experiments with different configuration of producers, consumers and topics:
 
 One producer, a topic with one partition, one consumer:
 
-![]('./img/task1/task1.png')
+![](./img/task\ 1/task1.png )
 
 
 One producer, a topic with one partition, 2 consumers
