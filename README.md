@@ -14,6 +14,8 @@ One producer, a topic with one partition, one consumer:
 
 One producer, a topic with one partition, 2 consumers
 
+![](./img/task2/task2.png)
+
 One producer, a topic with 2 partitions, 2 consumers
 
 One producer, a topic with 5 partitions, 5 consumers
