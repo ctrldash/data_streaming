@@ -18,18 +18,13 @@ metric2 = Gauge('custom_memory', 'CUSTOM MEMORY')
 
 def msg_process(msg):
     logger.info(msg.value())
-    logger.info(msg.timestamp())
 
-    sleep(1)
+    sleep(0.1)
 
     current_timestamp = round(time() * 1000)
 
     value = int(current_timestamp) - int(msg.timestamp()[1])
 
-    logger.info(f"Current timestamp: {int(current_timestamp)}")
-    logger.info(f"Kafka timestamp: {int(msg.timestamp()[1])}")
-
-    logger.info(value)
     metric.set(value)
 
     res = len(str(msg.value()).encode('utf-8'))
