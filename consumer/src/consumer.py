@@ -1,6 +1,8 @@
 import sys
 import logging
 from confluent_kafka import Consumer, KafkaException, KafkaError
+from prometheus_client import start_http_server, Gauge, Summary
+from time import sleep, time
 
 
 logger = logging.getLogger('consumer')
@@ -10,10 +12,24 @@ handler.setFormatter(logging.Formatter('%(asctime)-15s %(levelname)-8s %(message
 logger.addHandler(handler)
 
 
+metric = Gauge('custom_request_duration', 'CUSTOM Request duration in seconds')
+metric2 = Gauge('custom_memory', 'CUSTOM MEMORY')
+
+
 def msg_process(msg):
-    logger.info("I`m here, inside msg_process function")
     logger.info(msg.value())
-    logger.info(msg.topic())
+
+    sleep(0.1)
+
+    current_timestamp = round(time() * 1000)
+
+    value = int(current_timestamp) - int(msg.timestamp()[1])
+
+    metric.set(value)
+
+    res = len(str(msg.value()).encode('utf-8'))
+
+    metric2.set(res)
 
 
 def basic_consume_loop(consumer, topics):
@@ -44,6 +60,8 @@ def shutdown():
 
 
 if __name__ == '__main__':
+    start_http_server(8000)
+
     conf = {'bootstrap.servers': 'kafka-1:9092',
         'group.id': "super3",
         'enable.auto.commit': False,

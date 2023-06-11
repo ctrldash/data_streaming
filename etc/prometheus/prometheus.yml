@@ -26,4 +26,4 @@ scrape_configs:
     # scheme defaults to 'http'.
 
     static_configs:
-    - targets: ['jmx-kafka-1:5556','jmx-kafka-2:5556', 'jmx-kafka-3:5556']
+    - targets: ['jmx-kafka-1:5556','jmx-kafka-2:5556', 'jmx-kafka-3:5556', 'consumer:8000']
