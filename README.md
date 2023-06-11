@@ -22,9 +22,15 @@ One producer, a topic with 2 partitions, 2 consumers
 
 One producer, a topic with 5 partitions, 5 consumers
 
+![](./img/task4/task4.png)
+
 One producer, a topic with 10 partitions, 1 consumers
 
+![](./img/task5/task5.png)
+
 One producer, a topic with 10 partitions, 5 consumers
+
+![](./img/task6/task6.png)
 
 One producer, a topic with 10 partitions, 10 consumers
 
