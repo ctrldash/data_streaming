@@ -34,4 +34,6 @@ One producer, a topic with 10 partitions, 5 consumers
 
 One producer, a topic with 10 partitions, 10 consumers
 
+![](./img/task7/task7.png)
+
 2 producers (input data should be split into 2 parts somehow), a topic with 10 partitions, 10 consumers
