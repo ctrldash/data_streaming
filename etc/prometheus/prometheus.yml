@@ -23,4 +23,5 @@ scrape_configs:
 
   - job_name: consumer   # your project name
     static_configs:
-      - targets: [ 'consumer:8000' ]
+
+    - targets: ['jmx-kafka-1:5556','jmx-kafka-2:5556', 'jmx-kafka-3:5556', 'consumer:8000']
