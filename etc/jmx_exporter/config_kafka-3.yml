@@ -14,7 +14,7 @@
 # limitations under the License.
 
 #---------------------------------------------------------------------------------------------------------
-# Kafka Broker JMX Metrics : 
+# Kafka Broker JMX Metrics :
 # Compatible with version Apache Kafka v2.x.x / Confluent Plateform 5.x.x
 #---------------------------------------------------------------------------------------------------------
 hostPort: kafka-3:9993
