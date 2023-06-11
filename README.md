@@ -18,6 +18,8 @@ One producer, a topic with one partition, 2 consumers
 
 One producer, a topic with 2 partitions, 2 consumers
 
+![](./img/task3/task3.png)
+
 One producer, a topic with 5 partitions, 5 consumers
 
 One producer, a topic with 10 partitions, 1 consumers
