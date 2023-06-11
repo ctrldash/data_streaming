@@ -173,4 +173,4 @@ services:
         condition: service_started
     ports:
       - "8000-8009:8000"
-    command: [ "python", "./src/consumer.py" ]
+    command: [ "python", "./src/consumer.py" ] 
