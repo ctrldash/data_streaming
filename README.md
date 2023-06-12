@@ -5,7 +5,7 @@ Collaborators:
  - Oleksii
  - Daria
 
-1. We have chosen the Twitter dataset from [Kaggle](https://www.kaggle.com/datasets/crowdflower/twitter-airline-sentiment]).
+1. We have chosen the Twitter dataset from [Kaggle](https://www.kaggle.com/datasets/crowdflower/twitter-airline-sentiment).
 
 2. Here is our kafka environment with 3 brokers - [docker-compose.yml](https://github.com/ctrldash/data_streaming/blob/349f10d9c5feaebb7ccf10299e0f87d4b0ac66b3/docker-compose.yml).
 
