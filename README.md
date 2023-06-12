@@ -1,9 +1,9 @@
 # data_streaming
 
 Collaborators:
- - Vadym
- - Oleksii
- - Daria
+ - Vadym Popyk
+ - Oleksii Zarembovskyi
+ - Daria But
 
 1. We have chosen the Twitter dataset from [Kaggle](https://www.kaggle.com/datasets/crowdflower/twitter-airline-sentiment).
 
